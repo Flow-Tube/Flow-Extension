@@ -1,199 +1,58 @@
-:root {
-  --bg: #0b0b0d;
-  --card: #141417;
-  --fg: #f1f1f1;
-  --muted: #9a9aa2;
-  --line: rgba(255, 255, 255, 0.09);
-  --hover: rgba(255, 255, 255, 0.04);
-  --field: rgba(255, 255, 255, 0.05);
-  --track: rgba(255, 255, 255, 0.16);
-  --accent: #ff2323;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #f4f4f6;
-    --card: #ffffff;
-    --fg: #14141a;
-    --muted: #6b6b75;
-    --line: rgba(0, 0, 0, 0.09);
-    --hover: rgba(0, 0, 0, 0.03);
-    --field: rgba(0, 0, 0, 0.04);
-    --track: rgba(0, 0, 0, 0.18);
-  }
-}
-
-* {
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0;
   padding: 48px 20px;
-  font-family:
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif;
-  color: var(--fg);
-  background: var(--bg);
   display: flex;
   justify-content: center;
 }
 
-.card {
+.page {
   width: 100%;
-  max-width: 560px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 8px 28px 28px;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .head {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--line);
+  gap: 16px;
 }
 .head h1 {
   margin: 0;
-  font-size: 18px;
-  letter-spacing: -0.01em;
+  font-size: 22px;
+  font-weight: 650;
 }
 .sub {
   margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.group {
-  padding: 18px 0;
-  border-bottom: 1px solid var(--line);
-}
-.group h2 {
-  margin: 0 0 6px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--muted);
-}
-
-.row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 10px;
-  margin: 0 -10px;
-  border-radius: 10px;
-}
-label.row {
-  cursor: pointer;
-}
-label.row:hover {
-  background: var(--hover);
-}
-.row__label {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  color: var(--on-surface-variant);
   font-size: 14px;
 }
-.row__label small {
-  color: var(--muted);
-  font-size: 12px;
-}
 
-input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  position: relative;
-  flex-shrink: 0;
-  margin: 0 0 0 auto;
-  width: 40px;
-  height: 23px;
-  border-radius: 999px;
-  background: var(--track);
-  cursor: pointer;
-  transition: background 0.16s ease;
+.field {
+  flex: none;
+  width: 180px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+  background: var(--row-control);
+  color: var(--on-surface);
+  font: inherit;
+  font-size: 14px;
 }
-input[type="checkbox"]::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 19px;
-  height: 19px;
-  border-radius: 50%;
-  background: #fff;
-  transition: transform 0.16s ease;
-}
-input[type="checkbox"]:checked {
-  background: var(--accent);
-}
-input[type="checkbox"]:checked::after {
-  transform: translateX(17px);
-}
-input[type="checkbox"]:focus-visible {
-  outline: 2px solid var(--accent);
+.field:focus-visible {
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
-}
-
-.text {
-  margin-left: auto;
-  width: 160px;
-  padding: 8px 11px;
-  font: inherit;
-  font-size: 13px;
-  color: var(--fg);
-  background: var(--field);
-  border: 1px solid var(--line);
-  border-radius: 9px;
-}
-.text:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.btn {
-  margin-left: auto;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  color: #fff;
-  background: var(--accent);
-  border: 0;
-  border-radius: 9px;
-  padding: 8px 15px;
-  cursor: pointer;
-  transition: opacity 0.15s ease;
-}
-.btn:hover {
-  opacity: 0.88;
-}
-.btn:disabled {
-  background: var(--field);
-  color: var(--muted);
-  cursor: default;
 }
 
 .foot {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding-top: 20px;
-}
-.foot a {
-  color: var(--muted);
-  font-size: 13px;
-  text-decoration: none;
-}
-.foot a:hover {
-  color: var(--fg);
+  gap: 16px;
+  padding: 0 4px;
 }
 .version {
   margin-left: auto;
-  color: var(--muted);
   font-size: 12px;
+  color: var(--on-surface-variant);
 }

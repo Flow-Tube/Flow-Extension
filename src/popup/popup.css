@@ -1,179 +1,51 @@
-:root {
-  --bg: #0f0f11;
-  --fg: #f1f1f1;
-  --muted: #9a9aa2;
-  --line: rgba(255, 255, 255, 0.1);
-  --hover: rgba(255, 255, 255, 0.05);
-  --track: rgba(255, 255, 255, 0.16);
-  --accent: #ff2323;
-  --ok: #4ade80;
-  --off: #ff6363;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #ffffff;
-    --fg: #14141a;
-    --muted: #6b6b75;
-    --line: rgba(0, 0, 0, 0.1);
-    --hover: rgba(0, 0, 0, 0.04);
-    --track: rgba(0, 0, 0, 0.18);
-    --ok: #16a34a;
-    --off: #dc2626;
-  }
-}
-
-* {
-  box-sizing: border-box;
-}
-
 body {
-  width: 300px;
-  margin: 0;
-  padding: 14px 16px;
-  font-family:
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif;
-  font-size: 14px;
-  color: var(--fg);
-  background: var(--bg);
+  width: 340px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .head {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line);
 }
-
 .brand {
+  font-size: 16px;
   font-weight: 650;
-  font-size: 15px;
-  letter-spacing: -0.01em;
 }
-
 .version {
   font-size: 11px;
-  color: var(--muted);
+  color: var(--on-surface-variant);
 }
-
-.status {
+.head .status {
   margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.status::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: currentColor;
-}
-.status--ok {
-  color: var(--ok);
-}
-.status--off {
-  color: var(--off);
 }
 
-.toggles {
+.tab .row__text {
+  gap: 4px;
+  width: 100%;
+}
+.tab__title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tab__actions {
   display: flex;
-  flex-direction: column;
-  padding: 4px 0;
-}
-
-.row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 9px 8px;
-  margin: 0 -8px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.row:hover {
-  background: var(--hover);
-}
-
-.row__label {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.row__label small {
-  color: var(--muted);
-  font-size: 11px;
-}
-
-input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  position: relative;
-  flex-shrink: 0;
-  margin: 0 0 0 auto;
-  width: 36px;
-  height: 21px;
-  border-radius: 999px;
-  background: var(--track);
-  cursor: pointer;
-  transition: background 0.16s ease;
-}
-input[type="checkbox"]::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 17px;
-  height: 17px;
-  border-radius: 50%;
-  background: #fff;
-  transition: transform 0.16s ease;
-}
-input[type="checkbox"]:checked {
-  background: var(--accent);
-}
-input[type="checkbox"]:checked::after {
-  transform: translateX(15px);
-}
-input[type="checkbox"]:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .foot {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
+  padding: 0 4px;
 }
 
-.foot a,
-.foot button {
-  font: inherit;
-  font-size: 13px;
-  color: var(--muted);
-  text-decoration: none;
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-}
-.foot button {
-  margin-left: auto;
-}
-.foot a:hover,
-.foot button:hover {
-  color: var(--fg);
-}
-#get-flow {
-  color: var(--accent);
-  font-weight: 600;
+[hidden] {
+  display: none !important;
 }

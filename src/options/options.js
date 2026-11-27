@@ -3,6 +3,7 @@ import { bindSettingToggles } from "../lib/bind-settings.js";
 import { loadSettings, saveSettings, DEFAULT_SETTINGS } from "../lib/settings.js";
 import { hasBridgePermission, requestBridgePermission } from "../lib/permissions.js";
 import { FLOW_RELEASE_URL, EXTENSION_REPO_URL } from "../lib/const.js";
+import { renderSwitches } from "../pages/switches.js";
 
 const grantBtn = document.getElementById("grant");
 const portsInput = document.getElementById("ports");
@@ -11,7 +12,7 @@ document.getElementById("version").textContent = `v${api.runtime.getManifest().v
 
 async function refreshGrant() {
   const granted = await hasBridgePermission();
-  grantBtn.textContent = granted ? "Access granted" : "Grant access";
+  grantBtn.textContent = granted ? "Allowed" : "Allow";
   grantBtn.disabled = granted;
 }
 
@@ -36,6 +37,8 @@ portsInput.addEventListener("change", async () => {
 
 document.getElementById("get-flow").href = FLOW_RELEASE_URL;
 document.getElementById("repo").href = EXTENSION_REPO_URL;
+
+renderSwitches();
 
 (async () => {
   await bindSettingToggles(document, {

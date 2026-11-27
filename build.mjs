@@ -25,6 +25,7 @@ const STATIC_FILES = [
   ["src/popup/popup.css", "popup/popup.css"],
   ["src/options/options.html", "options/options.html"],
   ["src/options/options.css", "options/options.css"],
+  ["src/pages/m3e.css", "pages/m3e.css"],
 ];
 
 async function exists(p) {
@@ -52,6 +53,7 @@ async function buildTarget(name, manifest) {
   await rm(outdir, { recursive: true, force: true });
   await mkdir(path.join(outdir, "popup"), { recursive: true });
   await mkdir(path.join(outdir, "options"), { recursive: true });
+  await mkdir(path.join(outdir, "pages"), { recursive: true });
 
   const context = await esbuild.context({
     entryPoints: ENTRY_POINTS,
