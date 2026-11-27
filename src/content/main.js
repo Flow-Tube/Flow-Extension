@@ -5,6 +5,10 @@ import { currentTimeSeconds } from "../extract/player.js";
 import { VIDEO_EL_SELECTOR } from "../extract/selectors.js";
 import { syncPlayerButtons } from "../ui/player-buttons.js";
 import { syncActionPill } from "../ui/action-pill.js";
+import { syncShortsButtons } from "../ui/shorts-button.js";
+import { syncPagePill, syncPanelPill } from "../ui/page-pill.js";
+import { syncMusicBar } from "../ui/music-bar.js";
+import { playlistId } from "../extract/playlist.js";
 import { showPlayerNotice } from "../ui/player-notice.js";
 import { toast } from "../ui/toast.js";
 import { initCardButtons, setCardButtonsEnabled } from "../ui/card-buttons.js";
@@ -41,6 +45,27 @@ function downloadFromPlayer() {
   if (id) actions.download(id, inPlayer(0));
 }
 
+function pauseAll() {
+  for (const video of document.querySelectorAll("video")) video.pause();
+}
+
+function openShortInFlow() {
+  pauseAll();
+  actions.open(location.href);
+}
+
+function playSongInFlow() {
+  const id = currentWatchId();
+  if (!id) return;
+  pauseAll();
+  actions.watch(id);
+}
+
+function downloadSong() {
+  const id = currentWatchId();
+  if (id) actions.download(id);
+}
+
 function render() {
   const onVideoPage = location.host !== MUSIC_HOST && location.pathname === "/watch";
   syncPlayerButtons(onVideoPage ? settings.playerButtons : "off", {
@@ -51,6 +76,19 @@ function render() {
     onVideoPage && settings.actionPill && !!currentWatchId(),
     watchFromPlayer,
   );
+
+  const onMusic = location.host === MUSIC_HOST;
+  const onShort = !onMusic && location.pathname.startsWith("/shorts/");
+  syncShortsButtons(onShort && settings.pageButtons, openShortInFlow);
+  syncPagePill(settings.pageButtons, (url) => actions.open(url));
+  syncPanelPill(onVideoPage && settings.pageButtons ? playlistId() : null, (url) =>
+    actions.open(url),
+  );
+  // The bar's song is only known from the page address while a song page is open.
+  syncMusicBar(onMusic && currentWatchId() ? settings.playerButtons : "off", {
+    onWatch: playSongInFlow,
+    onDownload: downloadSong,
+  });
 }
 
 async function start() {
