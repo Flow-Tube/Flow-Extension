@@ -3,9 +3,13 @@ import { BRIDGE_PORTS } from "./const.js";
 
 const KEY = "settings";
 
+export const PLAYER_BUTTONS = ["both", "watch", "off"];
+
 export const DEFAULT_SETTINGS = {
   overlayOnThumbnails: true,
-  watchPageRow: true,
+  // "both" | "watch" | "off": Flow's buttons in the player's controls.
+  playerButtons: "both",
+  actionPill: true,
   silentMode: true,
   includeTimestamp: true,
   musicAsMusic: true,
@@ -14,7 +18,20 @@ export const DEFAULT_SETTINGS = {
 };
 
 function merge(stored) {
-  return { ...DEFAULT_SETTINGS, ...(stored ?? {}) };
+  const settings = { ...DEFAULT_SETTINGS, ...(stored ?? {}) };
+  // 1.x kept the watch-page bar under `watchPageRow`; the pill that replaced it keeps that choice.
+  if (
+    stored &&
+    stored.actionPill === undefined &&
+    typeof stored.watchPageRow === "boolean"
+  ) {
+    settings.actionPill = stored.watchPageRow;
+  }
+  delete settings.watchPageRow;
+  if (!PLAYER_BUTTONS.includes(settings.playerButtons)) {
+    settings.playerButtons = DEFAULT_SETTINGS.playerButtons;
+  }
+  return settings;
 }
 
 export async function loadSettings() {
