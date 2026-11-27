@@ -8,7 +8,7 @@ export function buildDeepLink(action, params) {
 // Fires the flow:// url in a hidden iframe (so the YouTube tab never navigates)
 // and resolves true if the OS grabbed focus within the window — the signal that
 // the desktop app is launching. Resolves false when nothing handled the scheme.
-export function launchDeepLink(url) {
+export function launchDeepLink(url, timeout = HANDOFF_TIMEOUT_MS) {
   return new Promise((resolve) => {
     let handedOff = false;
     const onHide = () => {
@@ -24,13 +24,14 @@ export function launchDeepLink(url) {
     const iframe = document.createElement("iframe");
     iframe.style.display = "none";
     iframe.src = url;
-    document.body.appendChild(iframe);
+    // A link caught at document_start has no body yet.
+    (document.body || document.documentElement).appendChild(iframe);
 
     setTimeout(() => {
       document.removeEventListener("visibilitychange", onHide);
       window.removeEventListener("blur", onBlur);
       iframe.remove();
       resolve(handedOff);
-    }, HANDOFF_TIMEOUT_MS);
+    }, timeout);
   });
 }

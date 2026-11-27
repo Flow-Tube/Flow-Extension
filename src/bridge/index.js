@@ -41,3 +41,22 @@ export async function handoff(action, params, { ports, silent = true, toast } = 
   });
   return HANDOFF.NOT_INSTALLED;
 }
+
+// Hands a whole YouTube link to Flow, which works out whether it is a video, a Short or a
+// song: over the bridge when Flow is running and takes links, otherwise as `flow://open`.
+// Shows nothing; the caller decides what the page does next.
+export async function openLink(url, { ports, silent = true, timeout } = {}) {
+  if (silent) {
+    const running = await findRunning(ports);
+    if (running?.open) {
+      try {
+        if (await sendToBridge(running.port, "open", { url })) return HANDOFF.SILENT;
+      } catch (err) {
+        log("bridge open failed", err);
+      }
+    }
+  }
+  if (await launchDeepLink(buildDeepLink("open", { url }), timeout))
+    return HANDOFF.LAUNCHED;
+  return HANDOFF.NOT_INSTALLED;
+}

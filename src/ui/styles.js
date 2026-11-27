@@ -67,7 +67,21 @@ export const STYLES = `
 }
 .flow-toast__cta:hover { background: #d90000; }
 
+.flow-handoff {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  max-width: calc(100vw - 32px); padding: 22px 26px;
+  border-radius: 16px;
+  background: #1f1f22; color: #f1f1f1;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+  font-size: 15px;
+  pointer-events: auto;
+}
+.flow-handoff__msg { font-weight: 500; }
+
 @media (prefers-color-scheme: light) {
+  .flow-handoff { background: #fff; color: #0f0f0f; border-color: rgba(0,0,0,0.12); box-shadow: 0 8px 28px rgba(0,0,0,0.16); }
   .flow-btn { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
   .flow-btn:hover { background: rgba(0,0,0,0.1); }
   .flow-btn--primary { color: #fff; }

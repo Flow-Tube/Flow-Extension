@@ -1,16 +1,16 @@
 # Flow — YouTube extension
 
-[![CI](https://github.com/FlowNeuro/Flow-Extension/actions/workflows/ci.yml/badge.svg)](https://github.com/FlowNeuro/Flow-Extension/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/FlowNeuro/Flow-Extension?sort=semver)](https://github.com/FlowNeuro/Flow-Extension/releases/latest)
+[![CI](https://github.com/Flow-Tube/Flow-Extension/actions/workflows/ci.yml/badge.svg)](https://github.com/Flow-Tube/Flow-Extension/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/Flow-Tube/Flow-Extension?sort=semver)](https://github.com/Flow-Tube/Flow-Extension/releases/latest)
 [![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
-Send any YouTube or YouTube Music video to the [Flow desktop app](https://github.com/FlowNeuro/Flow-Desktop) to **watch** or **download** — one click, no accounts, no scraping. The extension only ever transmits a video id (plus optional timestamp / playlist id); all extraction and playback happen natively inside Flow.
+Send any YouTube or YouTube Music video to the [Flow desktop app](https://github.com/Flow-Tube/Flow-Desktop) to **watch** or **download** — one click, no accounts, no scraping. The extension only ever sends a video id (plus optional timestamp / playlist id), or with **Open YouTube links in Flow** on, the address of the YouTube page being opened. It goes to Flow on your own computer and nowhere else; all extraction and playback happen natively inside Flow.
 
 ## Install
 
 **From a release (recommended)**
 
-1. Download the latest build from [Releases](https://github.com/FlowNeuro/Flow-Extension/releases/latest):
+1. Download the latest build from [Releases](https://github.com/Flow-Tube/Flow-Extension/releases/latest):
    - `flow-extension-chromium-vX.Y.Z.zip` for Chrome / Edge / Brave / Opera / Vivaldi
    - `flow-extension-firefox-vX.Y.Z.zip` for Firefox
 2. Unzip it.
@@ -30,6 +30,16 @@ Every action runs the same handoff cascade:
 
 Surfaces: a button row under the watch-page player, a hover overlay on any video thumbnail, and right-click context-menu items.
 
+## Open YouTube links in Flow
+
+Off by default; turn it on in the popup or Settings. Then a YouTube video, Short, live stream or YouTube Music song that you open from another site, another app or the address bar goes to Flow instead of loading in the browser:
+
+1. The page is held (hidden and paused) and a card shows **Opening in Flow…**.
+2. The whole link goes to Flow over the silent bridge (Flow Desktop with `/flow/open`), or as `flow://open?url=…`. Flow raises its window and opens it, at the link's time.
+3. The tab goes back to the page the link was on, or closes if it was opened just for the link.
+
+**Watch here instead** on the card keeps that tab in the browser. Links stay in the browser when you reload, go Back or Forward, or open them from YouTube itself, and playlists, channels and the rest of YouTube are never sent. If Flow doesn't answer, the page simply loads.
+
 ## Project layout
 
 ```
@@ -37,8 +47,8 @@ src/
   lib/        constants, browser shim, settings, permissions, query
   bridge/     ping · http · deep-link · handoff cascade
   extract/    videoId / timestamp / playlist / selectors
-  ui/         shadow host · styles · button · watch-row · overlay · toast
-  content/    params · actions · navigation · messaging · main (entry)
+  ui/         shadow host · styles · button · watch-row · overlay · toast · handoff-card
+  content/    params · actions · navigation · messaging · main (entry) · link-target · intercept (entry)
   background/ context-menus · service-worker (entry)
   popup/      toolbar status + quick toggles
   options/    full settings
@@ -84,14 +94,18 @@ flow://watch?v=<ID>[&t=<SECONDS>][&list=<PLAYLIST_ID>]
 flow://download?v=<ID>
 flow://music?v=<ID>
 
-GET http://127.0.0.1:47893/flow/ping      → { "app": "flow", "version": "…" }
+flow://open?url=<YOUTUBE_URL>
+
+GET http://127.0.0.1:47893/flow/ping      → { "app": "flow", "version": "…", "open": true }
 GET http://127.0.0.1:47893/flow/watch     ?v,t?,list?
 GET http://127.0.0.1:47893/flow/download  ?v
+GET http://127.0.0.1:47893/flow/open      ?url
 ```
 
 - Ports probed in order: `47893`, `47894`, `47895` (configurable in Settings).
 - Video id: `^[A-Za-z0-9_-]{11}$`. Playlist id: `^[A-Za-z0-9_-]{10,64}$`.
 - The desktop side validates every field and echoes CORS only for the allow-listed YouTube origins.
+- `open` in the ping answer means that Flow takes whole links on `/flow/open`. An older Flow gets them as `flow://open`.
 
 ## License
 

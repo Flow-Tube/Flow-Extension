@@ -26,6 +26,16 @@ export const base = {
       run_at: "document_idle",
       all_frames: false,
     },
+    {
+      matches: [
+        "*://www.youtube.com/*",
+        "*://m.youtube.com/*",
+        "*://music.youtube.com/*",
+      ],
+      js: ["intercept.js"],
+      run_at: "document_start",
+      all_frames: false,
+    },
   ],
   action: {
     default_popup: "popup/popup.html",

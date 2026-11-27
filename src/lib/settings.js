@@ -9,6 +9,7 @@ export const DEFAULT_SETTINGS = {
   silentMode: true,
   includeTimestamp: true,
   musicAsMusic: true,
+  openLinksInFlow: false,
   ports: BRIDGE_PORTS,
 };
 
