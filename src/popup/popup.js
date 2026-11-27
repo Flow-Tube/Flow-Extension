@@ -6,6 +6,7 @@ import { FLOW_RELEASE_URL } from "../lib/const.js";
 import { ACTION, MSG } from "../lib/messages.js";
 import { downloadIcon, flowIcon } from "../ui/icons.js";
 import { renderSwitches } from "../pages/switches.js";
+import { formatTime } from "../shared/time.js";
 
 const statusEl = document.getElementById("status");
 const accessCard = document.getElementById("access-card");
@@ -32,14 +33,6 @@ async function refreshStatus(settings) {
       running.version ? `Connected · Flow ${running.version}` : "Connected",
     );
   else setStatus("off", "Flow isn't running");
-}
-
-function formatTime(seconds) {
-  const s = Math.max(0, Math.floor(seconds));
-  const h = Math.floor(s / 3600);
-  const m = Math.floor((s % 3600) / 60);
-  const rest = String(s % 60).padStart(2, "0");
-  return h ? `${h}:${String(m).padStart(2, "0")}:${rest}` : `${m}:${rest}`;
 }
 
 const KIND_LABEL = { video: "Video", short: "Short", song: "Song" };
