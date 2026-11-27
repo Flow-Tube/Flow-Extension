@@ -6,6 +6,10 @@ body {
   gap: 16px;
 }
 
+.row {
+  padding: 12px 16px;
+}
+
 .head {
   display: flex;
   align-items: center;
