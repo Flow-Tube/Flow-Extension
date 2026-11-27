@@ -26,8 +26,3 @@ export const WATCH_ANCHOR_SELECTOR = [
 
 export const PLAYER_SELECTOR = "#movie_player";
 export const VIDEO_EL_SELECTOR = "video.html5-main-video, #movie_player video";
-
-// The Flow bar is inserted directly above the metadata block (which sits right
-// below the player), spanning the full width of the primary column.
-export const WATCH_METADATA_SELECTOR = "ytd-watch-metadata";
-export const WATCH_ROW_CONTAINERS = ["#below"];
