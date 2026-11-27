@@ -14,6 +14,7 @@ const TARGETS = { chromium, firefox };
 
 const ENTRY_POINTS = {
   content: "src/content/main.js",
+  intercept: "src/content/intercept.js",
   background: "src/background/index.js",
   "popup/popup": "src/popup/popup.js",
   "options/options": "src/options/options.js",

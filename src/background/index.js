@@ -19,10 +19,13 @@ api.contextMenus.onClicked.addListener((info, tab) => {
   }
 });
 
-api.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+api.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type === MSG.BRIDGE_ALLOWED) {
     hasBridgePermission().then(sendResponse);
     return true;
+  }
+  if (message?.type === MSG.CLOSE_TAB && sender.tab?.id != null) {
+    api.tabs.remove(sender.tab.id).catch(() => {});
   }
   return false;
 });

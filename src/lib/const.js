@@ -4,6 +4,8 @@ export const BRIDGE_PORTS = [47893, 47894, 47895];
 
 export const PING_TIMEOUT_MS = 600;
 export const HANDOFF_TIMEOUT_MS = 1500;
+// A link caught as it loads waits longer: the first time, the browser asks before it opens Flow.
+export const LINK_HANDOFF_TIMEOUT_MS = 6000;
 
 export const FLOW_RELEASE_URL =
   "https://github.com/FlowNeuro/Flow-Desktop/releases/latest";
