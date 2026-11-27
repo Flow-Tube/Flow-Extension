@@ -10,6 +10,8 @@ export const DEFAULT_SETTINGS = {
   // "both" | "watch" | "off": Flow's buttons in the player's controls.
   playerButtons: "both",
   actionPill: true,
+  // Flow on Shorts, playlist, channel and YouTube Music headers.
+  pageButtons: true,
   silentMode: true,
   includeTimestamp: true,
   musicAsMusic: true,
