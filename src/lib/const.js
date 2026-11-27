@@ -8,8 +8,8 @@ export const HANDOFF_TIMEOUT_MS = 1500;
 export const LINK_HANDOFF_TIMEOUT_MS = 6000;
 
 export const FLOW_RELEASE_URL =
-  "https://github.com/FlowNeuro/Flow-Desktop/releases/latest";
-export const EXTENSION_REPO_URL = "https://github.com/FlowNeuro/Flow-Extension";
+  "https://github.com/Flow-Tube/Flow-Desktop/releases/latest";
+export const EXTENSION_REPO_URL = "https://github.com/Flow-Tube/Flow-Extension";
 
 export const VIDEO_ID_RE = /^[A-Za-z0-9_-]{11}$/;
 export const PLAYLIST_ID_RE = /^[A-Za-z0-9_-]{10,64}$/;

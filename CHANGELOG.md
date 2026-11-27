@@ -4,6 +4,20 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- **Open YouTube links in Flow** (off by default, in the popup and Settings): a video, Short, live stream or YouTube Music song opened from another site or app goes to Flow, and the tab goes back or closes. **Watch here instead** keeps a tab in the browser, and the page loads normally if Flow doesn't answer.
+
+### Fixed
+
+- Silent mode works from YouTube pages. Content scripts can't read the extension's permissions, so the check always failed and every handoff fell back to the `flow://` prompt; it now asks the background worker.
+
+### Changed
+
+- Links point to the Flow-Tube organisation on GitHub.
+
 ## [1.0.1]
 
 ### Fixed

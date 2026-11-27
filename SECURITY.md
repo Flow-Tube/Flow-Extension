@@ -3,7 +3,7 @@
 ## Reporting a vulnerability
 
 Please **do not** open a public issue for security problems. Report privately via
-[GitHub Security Advisories](https://github.com/FlowNeuro/Flow-Extension/security/advisories/new)
+[GitHub Security Advisories](https://github.com/Flow-Tube/Flow-Extension/security/advisories/new)
 or email [flow.aedev@gmail.com](mailto:flow.aedev@gmail.com). We aim to acknowledge
 within a few days.
 
