@@ -9,22 +9,23 @@ export function createActions(getSettings) {
     return settings.silentMode && (await hasBridgePermission());
   }
 
-  async function run(action, params, settings) {
+  // `notify` shows the outcome; the page toast unless the caller has a better place for it.
+  async function run(action, params, settings, notify) {
     return handoff(action, params, {
       ports: settings.ports,
       silent: await silentAllowed(settings),
-      toast,
+      toast: notify,
     });
   }
 
   return {
-    watch(id) {
+    watch(id, notify = toast) {
       const settings = getSettings();
-      return run(watchAction(settings), watchParams(id, settings), settings);
+      return run(watchAction(settings), watchParams(id, settings), settings, notify);
     },
-    download(id) {
+    download(id, notify = toast) {
       const settings = getSettings();
-      return run(downloadAction(settings), downloadParams(id), settings);
+      return run(downloadAction(settings), downloadParams(id), settings, notify);
     },
   };
 }

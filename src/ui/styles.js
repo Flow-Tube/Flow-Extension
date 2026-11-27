@@ -3,8 +3,6 @@ export const STYLES = `
 :host { all: initial; }
 * { box-sizing: border-box; font-family: "Roboto", system-ui, -apple-system, sans-serif; }
 
-.flow-row { display: inline-flex; gap: 8px; align-items: center; }
-.flow-watchbar { display: flex; gap: 8px; align-items: center; padding: 12px 0; }
 
 .flow-btn {
   display: inline-flex; align-items: center; gap: 6px;
@@ -80,7 +78,40 @@ export const STYLES = `
 }
 .flow-handoff__msg { font-weight: 500; }
 
+/* "Open in Flow" in YouTube's actions row, sized and coloured like Share. */
+.flow-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: var(--flow-pill-h, 36px); padding: 0 16px 0 12px;
+  border: 0; border-radius: 999px;
+  background: rgba(255,255,255,0.1); color: #f1f1f1;
+  font-family: "Roboto", "Arial", sans-serif; font-size: 14px; font-weight: 500;
+  cursor: pointer; white-space: nowrap;
+  transition: background-color .15s ease;
+}
+.flow-pill svg { width: 24px; height: 24px; flex: none; }
+.flow-pill:hover { background: rgba(255,255,255,0.2); }
+.flow-pill:focus-visible { outline: 2px solid #3ea6ff; outline-offset: 2px; }
+.flow-pill.is-compact { width: var(--flow-pill-h, 36px); padding: 0; justify-content: center; }
+.flow-pill.is-compact .flow-pill__label { display: none; }
+
+/* Inside the player: always on the player's dark ground. */
+.flow-notice {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 8px 14px; border-radius: 10px;
+  background: rgba(28,28,28,0.9); color: #fff;
+  font-size: 14px; font-weight: 500;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: auto;
+}
+.flow-notice.is-visible { opacity: 1; transform: translateY(0); }
+.flow-notice--error { box-shadow: inset 0 0 0 1px rgba(255,99,99,0.6); }
+.flow-notice__cta { color: #3ea6ff; text-decoration: none; font-weight: 600; }
+
 /* YouTube's light theme (set on the host by ui/theme.js). Primary buttons keep their red. */
+:host([data-yt-theme="light"]) .flow-pill { background: rgba(0,0,0,0.05); color: #0f0f0f; }
+:host([data-yt-theme="light"]) .flow-pill:hover { background: rgba(0,0,0,0.1); }
+:host([data-yt-theme="light"]) .flow-pill:focus-visible { outline-color: #065fd4; }
 :host([data-yt-theme="light"]) .flow-handoff { background: #fff; color: #0f0f0f; border-color: rgba(0,0,0,0.12); box-shadow: 0 8px 28px rgba(0,0,0,0.16); }
 :host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--primary) { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
 :host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--primary):hover { background: rgba(0,0,0,0.1); }

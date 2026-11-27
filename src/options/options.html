@@ -29,12 +29,29 @@
             </span>
             <input type="checkbox" data-setting="overlayOnThumbnails" />
           </label>
+          <div class="row">
+            <span class="row__text">
+              <span class="row__title">Player buttons</span>
+              <span class="row__desc"
+                >Flow buttons in the player's controls, next to subtitles</span
+              >
+            </span>
+            <select
+              class="select"
+              data-setting="playerButtons"
+              aria-label="Player buttons"
+            >
+              <option value="both">Watch and download</option>
+              <option value="watch">Watch only</option>
+              <option value="off">Off</option>
+            </select>
+          </div>
           <label class="row">
             <span class="row__text">
-              <span class="row__title">Watch-page buttons</span>
-              <span class="row__desc">Watch and Download under the player</span>
+              <span class="row__title">Open in Flow pill</span>
+              <span class="row__desc">Next to Share, under the video</span>
             </span>
-            <input type="checkbox" data-setting="watchPageRow" />
+            <input type="checkbox" data-setting="actionPill" />
           </label>
         </div>
       </section>
