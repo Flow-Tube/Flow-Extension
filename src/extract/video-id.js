@@ -30,10 +30,21 @@ export function currentWatchId() {
   return idFromWatchUrl(location.href);
 }
 
-// Resolve a card/thumbnail element to its video id via the nearest watch link.
+// Resolve a card/thumbnail element to its video id via the first of its links that names one.
+// A card's first link can be its channel, so every candidate is tried in order.
 export function idFromCard(el) {
   if (!el) return null;
-  const anchor =
-    el.closest?.(WATCH_ANCHOR_SELECTOR) || el.querySelector?.(WATCH_ANCHOR_SELECTOR);
-  return anchor?.href ? idFromWatchUrl(anchor.href) : null;
+  const own = el.closest?.(WATCH_ANCHOR_SELECTOR);
+  const anchors = own ? [own] : [...(el.querySelectorAll?.(WATCH_ANCHOR_SELECTOR) ?? [])];
+  for (const anchor of anchors) {
+    const id = anchor.href ? idFromWatchUrl(anchor.href) : null;
+    if (id) return id;
+  }
+  return null;
+}
+
+// The card's link when it is a Short, so Flow can open it in its Shorts player.
+export function shortsUrlFromCard(el) {
+  const anchor = el?.querySelector?.("a[href*='/shorts/']");
+  return anchor?.href && idFromWatchUrl(anchor.href) ? anchor.href : null;
 }
