@@ -3,44 +3,78 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../pages/m3e.css" />
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
     <header class="head">
-      <img class="mark" src="../icons/flow-mark.svg" alt="" width="22" height="22" />
+      <img class="mark" src="../icons/flow-mark.svg" alt="" width="24" height="24" />
       <span class="brand">Flow</span>
       <span id="version" class="version"></span>
-      <span id="status" class="status status--unknown">Checking…</span>
+      <span id="status" class="status">Checking…</span>
     </header>
 
-    <section class="toggles">
-      <label class="row">
-        <span class="row__label">
-          Open YouTube links in Flow
-          <small>Videos, Shorts and songs you click</small>
+    <section id="tab-card" class="rows" hidden>
+      <div class="row tab">
+        <span class="row__text">
+          <span id="tab-label" class="row__desc"></span>
+          <span id="tab-title" class="row__title tab__title"></span>
+          <span class="tab__actions">
+            <button id="tab-watch" type="button" class="btn btn--primary"></button>
+            <button id="tab-download" type="button" class="btn btn--secondary"></button>
+          </span>
         </span>
-        <input type="checkbox" data-setting="openLinksInFlow" />
-      </label>
-      <label class="row">
-        <span class="row__label">Overlay on thumbnails</span>
-        <input type="checkbox" data-setting="overlayOnThumbnails" />
-      </label>
-      <label class="row">
-        <span class="row__label">Watch-page buttons</span>
-        <input type="checkbox" data-setting="watchPageRow" />
-      </label>
-      <label class="row">
-        <span class="row__label">
-          Silent mode
-          <small>No prompt when Flow is running</small>
+      </div>
+    </section>
+
+    <section id="access-card" class="rows" hidden>
+      <div class="row">
+        <span class="row__text">
+          <span class="row__title">Silent mode needs local access</span>
+          <span class="row__desc"
+            >Buttons still work. Your browser asks before it opens Flow each time.</span
+          >
         </span>
-        <input type="checkbox" data-setting="silentMode" />
-      </label>
+        <button id="grant" type="button" class="btn btn--secondary">Allow</button>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2 class="group__title">On YouTube</h2>
+      <div class="rows">
+        <label class="row">
+          <span class="row__text"
+            ><span class="row__title">Buttons on thumbnails</span></span
+          >
+          <input type="checkbox" data-setting="overlayOnThumbnails" />
+        </label>
+        <label class="row">
+          <span class="row__text"
+            ><span class="row__title">Watch-page buttons</span></span
+          >
+          <input type="checkbox" data-setting="watchPageRow" />
+        </label>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2 class="group__title">Links</h2>
+      <div class="rows">
+        <label class="row">
+          <span class="row__text">
+            <span class="row__title">Open YouTube links in Flow</span>
+            <span class="row__desc">Videos, Shorts and songs you click</span>
+          </span>
+          <input type="checkbox" data-setting="openLinksInFlow" />
+        </label>
+      </div>
     </section>
 
     <footer class="foot">
-      <a id="get-flow" href="#" target="_blank" rel="noopener">Get Flow</a>
-      <button id="open-options" type="button">Settings</button>
+      <button id="open-options" type="button" class="link">All settings</button>
+      <a id="get-flow" class="link link--accent" href="#" target="_blank" rel="noopener"
+        >Get Flow</a
+      >
     </footer>
 
     <script src="popup.js"></script>

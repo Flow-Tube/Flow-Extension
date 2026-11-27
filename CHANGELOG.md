@@ -17,6 +17,8 @@ All notable changes to this project are documented here. The format follows
 ### Changed
 
 - Links point to the Flow-Tube organisation on GitHub.
+- The popup and the settings page use Flow Desktop's settings look: grouped rows and the same switches. The popup can send the video, Short or song on the current tab to Flow at the time you are at.
+- Buttons on YouTube follow YouTube's own light or dark theme instead of the computer's. On light YouTube, Watch in Flow was white on white.
 
 ## [1.0.1]
 

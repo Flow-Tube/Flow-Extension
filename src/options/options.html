@@ -3,101 +3,126 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Flow — Settings</title>
+    <title>Flow settings</title>
+    <link rel="stylesheet" href="../pages/m3e.css" />
     <link rel="stylesheet" href="options.css" />
   </head>
   <body>
-    <main class="card">
+    <main class="page">
       <header class="head">
-        <img class="mark" src="../icons/flow-mark.svg" alt="" width="28" height="28" />
+        <img class="mark" src="../icons/flow-mark.svg" alt="" width="40" height="40" />
         <div>
           <h1>Flow for YouTube</h1>
-          <p class="sub">Send videos to the Flow desktop app to watch or download.</p>
+          <p class="sub">Send videos, Shorts and songs to the Flow desktop app.</p>
         </div>
       </header>
 
       <section class="group">
-        <h2>Surfaces</h2>
-        <label class="row">
-          <span class="row__label">
-            Thumbnail overlay
-            <small>Hover any video card for quick actions</small>
-          </span>
-          <input type="checkbox" data-setting="overlayOnThumbnails" />
-        </label>
-        <label class="row">
-          <span class="row__label">
-            Watch-page buttons
-            <small>Add a Watch/Download row under the player</small>
-          </span>
-          <input type="checkbox" data-setting="watchPageRow" />
-        </label>
-      </section>
-
-      <section class="group">
-        <h2>Handoff</h2>
-        <label class="row">
-          <span class="row__label">
-            Open YouTube links in Flow
-            <small
-              >Videos, Shorts and songs you click on other sites open in Flow, and the tab
-              goes back. Reloads and links inside YouTube stay here.</small
-            >
-          </span>
-          <input type="checkbox" data-setting="openLinksInFlow" />
-        </label>
-        <label class="row">
-          <span class="row__label">
-            Include timestamp
-            <small>Continue where you paused on “Watch in Flow”</small>
-          </span>
-          <input type="checkbox" data-setting="includeTimestamp" />
-        </label>
-        <label class="row">
-          <span class="row__label">
-            Route YouTube Music as music
-            <small
-              >Play and download music.youtube.com links in Flow’s music player</small
-            >
-          </span>
-          <input type="checkbox" data-setting="musicAsMusic" />
-        </label>
-      </section>
-
-      <section class="group">
-        <h2>Silent bridge</h2>
-        <label class="row">
-          <span class="row__label">
-            Silent mode
-            <small>Use the local bridge so Flow reacts without an “Open?” prompt</small>
-          </span>
-          <input type="checkbox" data-setting="silentMode" />
-        </label>
-        <div class="row">
-          <span class="row__label">
-            Local access
-            <small>Required for silent mode and status detection</small>
-          </span>
-          <button id="grant" type="button" class="btn">Grant access</button>
+        <h2 class="group__title">On YouTube</h2>
+        <div class="rows">
+          <label class="row">
+            <span class="row__text">
+              <span class="row__title">Buttons on thumbnails</span>
+              <span class="row__desc"
+                >Watch and Download on a video card while you point at it</span
+              >
+            </span>
+            <input type="checkbox" data-setting="overlayOnThumbnails" />
+          </label>
+          <label class="row">
+            <span class="row__text">
+              <span class="row__title">Watch-page buttons</span>
+              <span class="row__desc">Watch and Download under the player</span>
+            </span>
+            <input type="checkbox" data-setting="watchPageRow" />
+          </label>
         </div>
-        <div class="row">
-          <span class="row__label">
-            Bridge ports
-            <small>Advanced — must match Flow Desktop</small>
-          </span>
-          <input
-            id="ports"
-            type="text"
-            class="text"
-            inputmode="numeric"
-            spellcheck="false"
-          />
+      </section>
+
+      <section class="group">
+        <h2 class="group__title">Links</h2>
+        <div class="rows">
+          <label class="row">
+            <span class="row__text">
+              <span class="row__title">Open YouTube links in Flow</span>
+              <span class="row__desc"
+                >Videos, Shorts and songs you open from other sites or apps go to Flow,
+                and the tab goes back. Reloads and links inside YouTube stay here.</span
+              >
+            </span>
+            <input type="checkbox" data-setting="openLinksInFlow" />
+          </label>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2 class="group__title">Handoff</h2>
+        <div class="rows">
+          <label class="row">
+            <span class="row__text">
+              <span class="row__title">Include timestamp</span>
+              <span class="row__desc">Flow starts where you paused</span>
+            </span>
+            <input type="checkbox" data-setting="includeTimestamp" />
+          </label>
+          <label class="row">
+            <span class="row__text">
+              <span class="row__title">Route YouTube Music as music</span>
+              <span class="row__desc"
+                >Play and download music.youtube.com songs in Flow's music player</span
+              >
+            </span>
+            <input type="checkbox" data-setting="musicAsMusic" />
+          </label>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2 class="group__title">Connection</h2>
+        <div class="rows">
+          <label class="row">
+            <span class="row__text">
+              <span class="row__title">Silent mode</span>
+              <span class="row__desc"
+                >Talk to Flow on this computer, so it opens without the browser
+                asking</span
+              >
+            </span>
+            <input type="checkbox" data-setting="silentMode" />
+          </label>
+          <div class="row">
+            <span class="row__text">
+              <span class="row__title">Local access</span>
+              <span class="row__desc"
+                >Needed for silent mode and the connection status</span
+              >
+            </span>
+            <button id="grant" type="button" class="btn btn--secondary">Allow</button>
+          </div>
+          <div class="row">
+            <span class="row__text">
+              <span class="row__title">Bridge ports</span>
+              <span class="row__desc">Advanced. Must match Flow Desktop.</span>
+            </span>
+            <input
+              id="ports"
+              type="text"
+              class="field"
+              inputmode="numeric"
+              spellcheck="false"
+              aria-label="Bridge ports"
+            />
+          </div>
         </div>
       </section>
 
       <footer class="foot">
-        <a id="repo" href="#" target="_blank" rel="noopener">Extension repo</a>
-        <a id="get-flow" href="#" target="_blank" rel="noopener">Get Flow desktop</a>
+        <a id="repo" class="link" href="#" target="_blank" rel="noopener"
+          >Extension on GitHub</a
+        >
+        <a id="get-flow" class="link link--accent" href="#" target="_blank" rel="noopener"
+          >Get Flow desktop</a
+        >
         <span id="version" class="version"></span>
       </footer>
     </main>

@@ -1,0 +1,325 @@
+/*
+  Flow Desktop's settings look (Material 3 Expressive) for the popup and the settings page.
+  Values are Flow Default's tokens from Flow Desktop: rows on surface-row, 2px apart, 16px outer
+  corners, and the 52x32 switch with a 24px handle that swells to 28px while pressed.
+*/
+:root {
+  --bg: #ffffff;
+  --row: #e8e8e8;
+  --row-hover: #e1e1e1;
+  --row-control: #d4d4d4;
+  --row-control-hover: #cbcbcb;
+  --on-surface: #111111;
+  --on-surface-variant: #5f5f5f;
+  --outline: #d7d7d7;
+  --primary: #ff0000;
+  --on-primary: #ffffff;
+  --ok: #188038;
+  --off: #d32f2f;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f0f0f;
+    --row: #171717;
+    --row-hover: #1d1d1d;
+    --row-control: #242424;
+    --row-control-hover: #303030;
+    --on-surface: #f4f4f4;
+    --on-surface-variant: #b8b8b8;
+    --outline: #343434;
+    --ok: #81c995;
+    --off: #ef5350;
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  font-size: 14px;
+  color: var(--on-surface);
+  background: var(--bg);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.group__title {
+  margin: 0;
+  padding: 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 4px;
+  background: var(--row);
+  transition: background-color 0.2s ease-out;
+}
+.rows > .row:first-child {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.rows > .row:last-child {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+label.row,
+button.row {
+  cursor: pointer;
+}
+.row:hover {
+  background: var(--row-hover);
+}
+
+.row__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.row__title {
+  font-size: 14px;
+  font-weight: 500;
+}
+.row__desc {
+  font-size: 12px;
+  color: var(--on-surface-variant);
+}
+
+/* Switch: the checkbox stays the real control, drawn over by the track. */
+.switch {
+  position: relative;
+  flex: none;
+  width: 52px;
+  height: 32px;
+}
+.switch input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+.switch__track {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 2px;
+  border: 2px solid var(--on-surface-variant);
+  border-radius: 999px;
+  background: var(--outline);
+  transition:
+    background-color 0.2s ease-out,
+    border-color 0.2s ease-out;
+}
+.switch__handle {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--on-surface-variant);
+  transform: translateX(0) scale(var(--press, 1));
+  /* M3's fast spatial spring, approximated: quick, with a small overshoot. */
+  transition:
+    transform 0.26s cubic-bezier(0.34, 1.36, 0.64, 1),
+    background-color 0.2s ease-out;
+}
+.switch__handle svg {
+  grid-area: 1 / 1;
+  width: 16px;
+  height: 16px;
+  transition:
+    opacity 0.15s ease-out,
+    transform 0.15s ease-out;
+}
+.switch__check {
+  color: var(--primary);
+  opacity: 0;
+  transform: scale(0.5);
+}
+.switch__x {
+  color: var(--outline);
+}
+.switch input:checked + .switch__track {
+  border-color: transparent;
+  background: var(--primary);
+}
+.switch input:checked + .switch__track .switch__handle {
+  background: var(--on-primary);
+  transform: translateX(20px) scale(var(--press, 1));
+}
+.switch input:checked + .switch__track .switch__check {
+  opacity: 1;
+  transform: scale(1);
+}
+.switch input:checked + .switch__track .switch__x {
+  opacity: 0;
+  transform: scale(0.5);
+}
+.switch input:active + .switch__track {
+  --press: 1.1667;
+}
+.switch input:focus-visible + .switch__track {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.switch input:disabled,
+.switch input:disabled + .switch__track {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Select, as Flow Desktop's settings Select. */
+.select {
+  flex: none;
+  height: 40px;
+  padding: 0 32px 0 12px;
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+  background: var(--row-control)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    no-repeat right 10px center / 16px;
+  color: var(--on-surface);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  appearance: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out;
+}
+.select:hover {
+  background-color: var(--row-control-hover);
+}
+.select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Buttons: Flow Desktop's primary and secondary, small. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease-out,
+    opacity 0.2s ease-out;
+}
+.btn svg {
+  width: 16px;
+  height: 16px;
+}
+.btn--primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.btn--primary:hover {
+  opacity: 0.9;
+}
+.btn--secondary {
+  background: var(--row-control);
+  color: var(--on-surface);
+}
+.btn--secondary:hover {
+  background: var(--row-control-hover);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.btn:focus-visible,
+.link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--on-surface-variant);
+  white-space: nowrap;
+}
+.status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--on-surface-variant);
+}
+.status--ok::before {
+  background: var(--ok);
+}
+.status--off::before {
+  background: var(--off);
+}
+
+.link {
+  color: var(--on-surface-variant);
+  font-size: 13px;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+.link:hover {
+  color: var(--on-surface);
+}
+.link--accent {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch__handle,
+  .switch__handle svg,
+  .switch__track,
+  .row {
+    transition-duration: 0.12s;
+    transition-timing-function: ease-out;
+  }
+}
