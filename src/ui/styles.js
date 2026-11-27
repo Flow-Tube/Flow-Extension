@@ -18,25 +18,27 @@ export const STYLES = `
 .flow-btn:hover { background: rgba(255,255,255,0.16); }
 .flow-btn:active { transform: translateY(1px); }
 .flow-btn:focus-visible { outline: 2px solid #ff5252; outline-offset: 2px; }
-.flow-btn--primary { background: #ff0000; border-color: transparent; color: #fff; }
-.flow-btn--primary:hover { background: #d90000; }
-.flow-btn--icon { height: 30px; width: 30px; padding: 0; border-radius: 50%; justify-content: center; }
 .flow-btn__icon { display: inline-flex; }
 .flow-btn__label:empty { display: none; }
 
-.flow-overlay {
-  position: fixed; top: 0; left: 0;
-  display: none; gap: 6px; padding: 4px;
-  border-radius: 21px; background: rgba(15,15,17,0.86);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-  pointer-events: auto;
+/* Buttons inside a thumbnail, like YouTube's own Watch later and Add to queue icons. */
+.flow-card { display: flex; gap: 4px; padding: 8px; }
+.flow-card .flow-btn--card {
+  width: 32px; height: 32px; padding: 0; justify-content: center;
+  border: 0; border-radius: 6px;
+  background: rgba(0,0,0,0.72); color: #fff;
 }
-.flow-overlay.is-visible { display: inline-flex; }
-.flow-overlay .flow-btn {
-  color: #fff; border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.12);
-}
-.flow-overlay .flow-btn:hover { background: rgba(255,255,255,0.24); }
+.flow-card .flow-btn--card:hover { background: rgba(0,0,0,0.9); }
+.flow-card .flow-btn--card svg { width: 20px; height: 20px; }
+.flow-card.is-small { padding: 5px; }
+.flow-card.is-small .flow-btn--card { width: 26px; height: 26px; border-radius: 5px; }
+.flow-card.is-small .flow-btn--card svg { width: 16px; height: 16px; }
+.flow-card.is-live .flow-card__download { display: none; }
+/* Beside a YouTube Music song row's menu, like its own icon buttons. */
+.flow-card.is-inline { padding: 0; }
+.flow-card.is-inline .flow-btn--card { width: 40px; height: 40px; border-radius: 50%; background: transparent; color: #aaa; }
+.flow-card.is-inline .flow-btn--card:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.flow-card.is-inline .flow-btn--card svg { width: 24px; height: 24px; }
 
 .flow-toasts {
   position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
@@ -108,11 +110,11 @@ export const STYLES = `
 .flow-notice--error { box-shadow: inset 0 0 0 1px rgba(255,99,99,0.6); }
 .flow-notice__cta { color: #3ea6ff; text-decoration: none; font-weight: 600; }
 
-/* YouTube's light theme (set on the host by ui/theme.js). Primary buttons keep their red. */
+/* YouTube's light theme (set on the host by ui/theme.js). Card buttons stay dark over the picture. */
 :host([data-yt-theme="light"]) .flow-pill { background: rgba(0,0,0,0.05); color: #0f0f0f; }
 :host([data-yt-theme="light"]) .flow-pill:hover { background: rgba(0,0,0,0.1); }
 :host([data-yt-theme="light"]) .flow-pill:focus-visible { outline-color: #065fd4; }
 :host([data-yt-theme="light"]) .flow-handoff { background: #fff; color: #0f0f0f; border-color: rgba(0,0,0,0.12); box-shadow: 0 8px 28px rgba(0,0,0,0.16); }
-:host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--primary) { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
-:host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--primary):hover { background: rgba(0,0,0,0.1); }
+:host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--card) { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
+:host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--card):hover { background: rgba(0,0,0,0.1); }
 `;

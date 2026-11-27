@@ -1,8 +1,6 @@
 const svg = (body, viewBox = "0 0 24 24") =>
   `<svg viewBox="${viewBox}" width="16" height="16" aria-hidden="true" focusable="false">${body}</svg>`;
 
-export const playIcon = svg('<path fill="currentColor" d="M8 5v14l11-7z"/>');
-
 // The Flow mark in one colour, for YouTube's own surfaces (player bar, thumbnails, Shorts).
 export const flowIcon = svg(
   '<rect x="2.6" y="5.2" width="18.8" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.9"/><path fill="currentColor" d="M10.2 8.3h6.6l-.6 2h-3.9l-.45 1.5h3.2l-.6 2h-3.2l-.85 2.7H8.1z"/>',

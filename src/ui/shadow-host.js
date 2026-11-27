@@ -29,7 +29,7 @@ export function floatingRoot() {
 // A fresh isolated host to embed inline into a specific place in the page.
 export function createInlineHost(id, hostCss = "all: initial; display: inline-flex;") {
   const host = document.createElement("div");
-  host.id = id;
+  if (id) host.id = id;
   host.style.cssText = hostCss;
   followTheme(host);
   const root = host.attachShadow({ mode: "open" });

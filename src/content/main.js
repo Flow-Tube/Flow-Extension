@@ -7,7 +7,7 @@ import { syncPlayerButtons } from "../ui/player-buttons.js";
 import { syncActionPill } from "../ui/action-pill.js";
 import { showPlayerNotice } from "../ui/player-notice.js";
 import { toast } from "../ui/toast.js";
-import { initOverlay, setOverlayEnabled } from "../ui/overlay.js";
+import { initCardButtons, setCardButtonsEnabled } from "../ui/card-buttons.js";
 import { formatTime } from "../shared/time.js";
 import { onNavigate } from "./navigation.js";
 import { createActions } from "./actions.js";
@@ -56,18 +56,19 @@ function render() {
 async function start() {
   settings = await loadSettings();
 
-  initOverlay({
+  initCardButtons({
     onWatch: (id) => actions.watch(id),
+    onOpen: (url) => actions.open(url),
     onDownload: (id) => actions.download(id),
   });
-  setOverlayEnabled(settings.overlayOnThumbnails);
+  setCardButtonsEnabled(settings.overlayOnThumbnails);
 
   listenForContextMenu(actions);
 
   onNavigate(render);
   onSettingsChanged((next) => {
     settings = next;
-    setOverlayEnabled(settings.overlayOnThumbnails);
+    setCardButtonsEnabled(settings.overlayOnThumbnails);
     render();
   });
 

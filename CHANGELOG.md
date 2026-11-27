@@ -20,6 +20,8 @@ All notable changes to this project are documented here. The format follows
 - The popup and the settings page use Flow Desktop's settings look: grouped rows and the same switches. The popup can send the video, Short or song on the current tab to Flow at the time you are at.
 - Watch in Flow and Download sit in the player's own controls, next to subtitles and settings, like SponsorBlock's buttons. Watch pauses the video here and shows "Sent to Flow at 3:42" inside the player. Player buttons in the popup and Settings picks Watch and download, Watch only or Off.
 - The bar above the video title is replaced by an Open in Flow pill next to Share, the same size and shape as YouTube's own buttons. It keeps the choice you made for the old bar.
+- Watch and Download sit inside each thumbnail's top-left corner while you point at a card, so they scroll with it and no longer cover YouTube's Watch later and Add to queue icons. They are smaller on sidebar and search rows, Shorts cards open in Flow's Shorts player, Download hides on live streams and premieres, and YouTube Music song rows get a Flow button beside their menu. They also work over YouTube's hover previews in search.
+- Video ids are found on YouTube's current card layout again.
 - Buttons on YouTube follow YouTube's own light or dark theme instead of the computer's. On light YouTube, Watch in Flow was white on white.
 
 ## [1.0.1]

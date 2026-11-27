@@ -23,6 +23,10 @@ export function createActions(getSettings) {
       const settings = getSettings();
       return run(watchAction(settings), watchParams(id, settings), settings, notify);
     },
+    // A whole YouTube link, such as a Short, which Flow opens on the right page.
+    open(url, notify = toast) {
+      return run("open", { url }, getSettings(), notify);
+    },
     download(id, notify = toast) {
       const settings = getSettings();
       return run(downloadAction(settings), downloadParams(id), settings, notify);
