@@ -80,10 +80,8 @@ export const STYLES = `
 }
 .flow-handoff__msg { font-weight: 500; }
 
-@media (prefers-color-scheme: light) {
-  .flow-handoff { background: #fff; color: #0f0f0f; border-color: rgba(0,0,0,0.12); box-shadow: 0 8px 28px rgba(0,0,0,0.16); }
-  .flow-btn { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
-  .flow-btn:hover { background: rgba(0,0,0,0.1); }
-  .flow-btn--primary { color: #fff; }
-}
+/* YouTube's light theme (set on the host by ui/theme.js). Primary buttons keep their red. */
+:host([data-yt-theme="light"]) .flow-handoff { background: #fff; color: #0f0f0f; border-color: rgba(0,0,0,0.12); box-shadow: 0 8px 28px rgba(0,0,0,0.16); }
+:host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--primary) { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
+:host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--primary):hover { background: rgba(0,0,0,0.1); }
 `;

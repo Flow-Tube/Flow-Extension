@@ -1,4 +1,5 @@
 import { STYLES } from "./styles.js";
+import { followTheme } from "./theme.js";
 
 export const FLOATING_HOST_ID = "flow-ext-floating";
 
@@ -18,6 +19,7 @@ export function floatingRoot() {
   host.style.cssText =
     "all: initial; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none;";
   (document.body || document.documentElement).appendChild(host);
+  followTheme(host);
 
   const root = host.attachShadow({ mode: "open" });
   root.appendChild(styleElement());
@@ -29,6 +31,7 @@ export function createInlineHost(id, hostCss = "all: initial; display: inline-fl
   const host = document.createElement("div");
   host.id = id;
   host.style.cssText = hostCss;
+  followTheme(host);
   const root = host.attachShadow({ mode: "open" });
   root.appendChild(styleElement());
   return { host, root };
