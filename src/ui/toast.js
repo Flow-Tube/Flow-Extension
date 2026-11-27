@@ -1,11 +1,14 @@
 import { floatingRoot } from "./shadow-host.js";
+import { MUSIC_HOST } from "../lib/const.js";
 
 let container;
 
 function ensureContainer() {
   if (container?.isConnected) return container;
   container = document.createElement("div");
-  container.className = "flow-toasts";
+  // Above YouTube Music's player bar.
+  container.className =
+    location.host === MUSIC_HOST ? "flow-toasts is-music" : "flow-toasts";
   floatingRoot().appendChild(container);
   return container;
 }

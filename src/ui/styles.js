@@ -45,6 +45,7 @@ export const STYLES = `
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   pointer-events: none;
 }
+.flow-toasts.is-music { bottom: 96px; }
 .flow-toast {
   display: inline-flex; align-items: center; gap: 12px;
   max-width: 90vw; padding: 10px 16px;
@@ -96,6 +97,31 @@ export const STYLES = `
 .flow-pill.is-compact { width: var(--flow-pill-h, 36px); padding: 0; justify-content: center; }
 .flow-pill.is-compact .flow-pill__label { display: none; }
 
+/* A Short's action column: a 48px tonal circle with its label under it, like Share. */
+.flow-shorts { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 16px; }
+.flow-shorts__btn {
+  width: 48px; height: 48px; border: 0; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.1); color: #f1f1f1; cursor: pointer;
+  transition: background-color .15s ease;
+}
+.flow-shorts__btn:hover { background: rgba(255,255,255,0.2); }
+.flow-shorts__btn:focus-visible { outline: 2px solid #3ea6ff; outline-offset: 2px; }
+.flow-shorts__btn svg { width: 24px; height: 24px; }
+.flow-shorts__label { font-family: "Roboto", "Arial", sans-serif; font-size: 12px; color: #f1f1f1; }
+
+/* YouTube Music's player bar: plain icons in its grey, white on hover. */
+.flow-music-bar { display: flex; align-items: center; }
+.flow-music-btn {
+  width: 40px; height: 40px; border: 0; border-radius: 50%;
+  display: grid; place-items: center;
+  background: transparent; color: #909090; cursor: pointer;
+  transition: color .15s ease, background-color .15s ease;
+}
+.flow-music-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
+.flow-music-btn:focus-visible { outline: 2px solid #3ea6ff; outline-offset: 2px; }
+.flow-music-btn svg { width: 24px; height: 24px; }
+
 /* Inside the player: always on the player's dark ground. */
 .flow-notice {
   display: inline-flex; align-items: center; gap: 12px;
@@ -114,6 +140,9 @@ export const STYLES = `
 :host([data-yt-theme="light"]) .flow-pill { background: rgba(0,0,0,0.05); color: #0f0f0f; }
 :host([data-yt-theme="light"]) .flow-pill:hover { background: rgba(0,0,0,0.1); }
 :host([data-yt-theme="light"]) .flow-pill:focus-visible { outline-color: #065fd4; }
+:host([data-yt-theme="light"]) .flow-shorts__btn { background: rgba(0,0,0,0.05); color: #0f0f0f; }
+:host([data-yt-theme="light"]) .flow-shorts__btn:hover { background: rgba(0,0,0,0.1); }
+:host([data-yt-theme="light"]) .flow-shorts__label { color: #0f0f0f; }
 :host([data-yt-theme="light"]) .flow-handoff { background: #fff; color: #0f0f0f; border-color: rgba(0,0,0,0.12); box-shadow: 0 8px 28px rgba(0,0,0,0.16); }
 :host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--card) { color: #0f0f0f; border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.05); }
 :host([data-yt-theme="light"]) .flow-btn:not(.flow-btn--card):hover { background: rgba(0,0,0,0.1); }

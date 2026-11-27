@@ -22,6 +22,8 @@ All notable changes to this project are documented here. The format follows
 - The bar above the video title is replaced by an Open in Flow pill next to Share, the same size and shape as YouTube's own buttons. It keeps the choice you made for the old bar.
 - Watch and Download sit inside each thumbnail's top-left corner while you point at a card, so they scroll with it and no longer cover YouTube's Watch later and Add to queue icons. They are smaller on sidebar and search rows, Shorts cards open in Flow's Shorts player, Download hides on live streams and premieres, and YouTube Music song rows get a Flow button beside their menu. They also work over YouTube's hover previews in search.
 - Video ids are found on YouTube's current card layout again.
+- Shorts get a Flow button at the end of their action column, which opens the Short in Flow's Shorts player. Playlist, channel and YouTube Music album and playlist pages get Open in Flow next to their own buttons, and so does the playlist panel beside a video. Shorts and page buttons in the popup and Settings turns them off.
+- YouTube Music's player bar has Flow and Download before the volume button, following the Player buttons setting. Notices on YouTube Music show above the player bar.
 - Buttons on YouTube follow YouTube's own light or dark theme instead of the computer's. On light YouTube, Watch in Flow was white on white.
 
 ## [1.0.1]

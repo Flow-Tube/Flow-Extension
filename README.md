@@ -28,7 +28,17 @@ Every action runs the same handoff cascade:
 2. **Deep link** — otherwise a `flow://` link launches Flow if it's installed.
 3. **Get Flow** — if nothing handles it, a toast links to the desktop release.
 
-Surfaces: a button row under the watch-page player, a hover overlay on any video thumbnail, and right-click context-menu items.
+Surfaces, each placed inside YouTube's own controls so it looks and behaves like them:
+
+- **Player:** Watch in Flow and Download in the player's right-hand controls, with a notice inside the player.
+- **Watch page:** an Open in Flow pill next to Share.
+- **Thumbnails:** Watch and Download in a card's top-left corner while you point at it (beside the menu on YouTube Music song rows).
+- **Shorts:** a Flow button at the end of the action column.
+- **Pages:** Open in Flow on playlist, channel and YouTube Music album and playlist headers, and in a video's playlist panel.
+- **YouTube Music:** Flow and Download in the player bar.
+- **Popup:** the video on the current tab, at the time you are at, plus the switches. Right-click menu items too.
+
+Everything follows YouTube's own light or dark theme. The popup and Settings use Flow Desktop's settings look.
 
 ## Open YouTube links in Flow
 
@@ -47,10 +57,11 @@ src/
   lib/        constants, browser shim, settings, permissions, query
   bridge/     ping · http · deep-link · handoff cascade
   extract/    videoId / timestamp / playlist / selectors
-  ui/         shadow host · styles · button · watch-row · overlay · toast · handoff-card
+  ui/         shadow host · theme · styles · icons · player buttons and notice · action pill · card buttons · shorts · page pill · music bar · toast · handoff-card
   content/    params · actions · navigation · messaging · main (entry) · link-target · intercept (entry)
   background/ context-menus · service-worker (entry)
-  popup/      toolbar status + quick toggles
+  pages/      Flow Desktop's settings styles and switches, shared by popup and options
+  popup/      status, current tab, quick switches
   options/    full settings
   manifest/   base + per-browser manifests
 scripts/      icon rasteriser · zip · package · version check
